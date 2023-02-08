@@ -14,7 +14,6 @@ const Form = () => {
 
     return (
         <div>
-
             <form onSubmit={handleSubmit(submit)}>
                 <input type="text" placeholder={'brand'} {...register('brand')}/>
                 <input type="text" placeholder={'price'} {...register('price',{valueAsNumber:true}) }/>
