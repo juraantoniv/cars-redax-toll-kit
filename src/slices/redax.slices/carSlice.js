@@ -29,7 +29,22 @@ const getAllAsync = createAsyncThunk(
 )
 
 
+const deleteById = createAsyncThunk(
+    'carSlice/delete',
+    async ({id},thunkAPI)=>{
 
+        try {
+            await carService.deleteById(id)
+            thunkAPI.dispatch(getAllAsync())
+
+        } catch (e){
+
+            return thunkAPI.rejectWithValue(e.response.data)
+        }
+
+    }
+
+)
 
 
 const create = createAsyncThunk(
@@ -46,10 +61,16 @@ const create = createAsyncThunk(
 )
 
 
+
+
 const carsSlice = createSlice({
     name: 'CarSlice',
     initialState,
-    reducers: {},
+    reducers: {
+        carForUpdate:(state,action)=>{
+            state.carForUpdate = action.payload
+        }
+    },
     extraReducers: builder =>
         builder
             .addCase(getAllAsync.fulfilled, (state, action) => {
@@ -59,11 +80,13 @@ const carsSlice = createSlice({
 })
 
 
-const {reducer:carReducer,actions:{}}=carsSlice
+const {reducer:carReducer,actions:{carForUpdate}}=carsSlice
 
 const carsActions ={
     getAllAsync,
-    create
+    create,
+    deleteById,
+    carForUpdate
 }
 
 export {
