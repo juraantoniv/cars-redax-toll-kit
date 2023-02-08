@@ -10,7 +10,6 @@ const Form = () => {
 
     const  submit = async (data)=> {
         await dispatch(carsActions.create({data}))
-        console.log(data);
     }
 
     return (

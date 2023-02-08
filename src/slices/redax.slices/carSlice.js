@@ -13,7 +13,7 @@ let initialState={
 }
 
 const getAllAsync = createAsyncThunk(
-    'postSlice/getAll',
+    'carSlice/getAll',
     async (_,{rejectWithValue})=>{
 
         try {
@@ -30,13 +30,11 @@ const getAllAsync = createAsyncThunk(
 
 
 const create = createAsyncThunk(
-    'postSlice/getAll',
+    'carSlice/create',
     async ({car},thunkAPI)=>{
-
         try {
             await carService.create(car)
             thunkAPI.dispatch(carService.getAll())
-
         }
         catch (e){
             return thunkAPI.rejectWithValue(e.response.data)
