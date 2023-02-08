@@ -20,7 +20,6 @@ const Form = () => {
                 <input type="text" placeholder={'year'} {...register('year',{valueAsNumber:true})}/>
                <button disabled={!isValid}>Save</button>
             </form>
-
         </div>
     );
 };
