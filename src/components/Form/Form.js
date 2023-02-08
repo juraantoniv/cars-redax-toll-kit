@@ -26,7 +26,6 @@ const Form = () => {
             setValue('year',carForUpdate.year,{shouldValidate:true})
 
         }
-            dispatch(carsActions.getAllAsync)
 
     },[carForUpdate])
 
