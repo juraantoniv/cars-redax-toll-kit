@@ -29,11 +29,25 @@ const getAllAsync = createAsyncThunk(
 )
 
 const carsSlice = createSlice({
-    name:'CarSlice',
+    name: 'CarSlice',
     initialState,
-    reducers:{
+    reducers: {},
+    extraReducers: builder =>
+        builder
+            .addCase(getAllAsync.fulfilled, (state, action) => {
+                state.cars = action.payload
+                state.loading = false
+            })
+})
 
-    },
-    extraReducers:{}
-    }
-)
+
+const {reducer:carReducer,actions:{}}=carsSlice
+
+const carsActions ={
+    getAllAsync
+}
+
+export {
+    carReducer,
+    carsActions
+}

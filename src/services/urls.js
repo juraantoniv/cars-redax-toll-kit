@@ -1,5 +1,5 @@
 
-const cars = 'cars/'
+const cars = '/cars'
 
  export const urls = {
     cars:{
