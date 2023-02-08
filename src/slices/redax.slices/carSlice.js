@@ -61,7 +61,7 @@ const create = createAsyncThunk(
 )
 
 
-const update = createAsyncThunk(
+const updateById = createAsyncThunk(
     'carSlice/update',
     async ({id,car}, thunkAPI) => {
         try {
@@ -101,7 +101,7 @@ const carsActions ={
     create,
     deleteById,
     carForUpdate,
-    update
+    updateById
 }
 
 export {
