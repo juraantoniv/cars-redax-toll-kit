@@ -28,6 +28,25 @@ const getAllAsync = createAsyncThunk(
     }
 )
 
+
+const create = createAsyncThunk(
+    'postSlice/getAll',
+    async ({car},thunkAPI)=>{
+
+        try {
+            await carService.create(car)
+            thunkAPI.dispatch(carService.getAll())
+
+        }
+        catch (e){
+            return thunkAPI.rejectWithValue(e.response.data)
+
+        }
+
+    }
+)
+
+
 const carsSlice = createSlice({
     name: 'CarSlice',
     initialState,
@@ -44,7 +63,8 @@ const carsSlice = createSlice({
 const {reducer:carReducer,actions:{}}=carsSlice
 
 const carsActions ={
-    getAllAsync
+    getAllAsync,
+    create
 }
 
 export {
