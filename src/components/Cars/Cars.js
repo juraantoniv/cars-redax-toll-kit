@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {carsActions} from "../../slices/redax.slices/carSlice";
+import Car from "../Car/Car";
 
 const Cars = () => {
 
@@ -16,7 +17,7 @@ const Cars = () => {
 
     return (
         <div>
-            {JSON.stringify(cars)}
+            {cars.map(car => <Car key={car.id} car={car}/>)}
         </div>
     );
 };
