@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../cars-redax-toll-kit.iml" filepath="$PROJECT_DIR$/../cars-redax-toll-kit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/cars-redax-toll-kit.iml" filepath="$PROJECT_DIR$/.idea/cars-redax-toll-kit.iml" />
     </modules>
   </component>
 </project>
