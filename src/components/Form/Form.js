@@ -13,8 +13,8 @@ const Form = () => {
         reset()
     }
 
-    const  update = async (car)=> {
-        await dispatch(carsActions.create({car}))
+    const  update = async (id,car)=> {
+        await dispatch(carsActions.update({id:carForUpdate.id,car}))
         reset()
     }
 

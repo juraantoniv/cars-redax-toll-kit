@@ -61,6 +61,20 @@ const create = createAsyncThunk(
 )
 
 
+const update = createAsyncThunk(
+    'carSlice/update',
+    async ({id,car}, thunkAPI) => {
+        try {
+            await carService.updateById(id,car);
+            thunkAPI.dispatch(getAllAsync())
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e.response.data)
+        }
+
+    }
+)
+
+
 
 
 const carsSlice = createSlice({
@@ -86,7 +100,8 @@ const carsActions ={
     getAllAsync,
     create,
     deleteById,
-    carForUpdate
+    carForUpdate,
+    update
 }
 
 export {
