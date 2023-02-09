@@ -1,11 +1,13 @@
 import React, {useEffect} from 'react';
 import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
+import {joiResolver} from "@hookform/resolvers/joi";
 import {carsActions} from "../../slices/redax.slices/carSlice";
+import {carValidator} from "../../validators/car.validator";
 
 const Form = () => {
     const {carForUpdate}=useSelector(state => state.carReducer)
-    const { register, handleSubmit,reset, formState: { errors,isValid },setValue } = useForm({mode:"all"});
+    const { register, handleSubmit,reset, formState: { errors,isValid },setValue } = useForm({mode:"all",resolver:joiResolver(carValidator)});
     const dispatch = useDispatch()
 
     const  create = async (car)=> {
