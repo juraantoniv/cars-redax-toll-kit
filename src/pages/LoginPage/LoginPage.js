@@ -1,21 +1,22 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
-import {authService, carService} from "../../services";
+import {authService} from "../../services";
+import {useNavigate} from "react-router-dom";
+
 
 const LoginPage = () => {
     const {register, handleSubmit} = useForm();
+    const navigate = useNavigate()
 
     const login = async (userCredential)=> {
 
         try {
-
-            const {data} = await authService.login(userCredential)
-            console.log(data);
-            console.log(userCredential);
+            await authService.login(userCredential)
+            navigate('/cars')
 
         }catch (e){
 
-            console.log(e.response.data);
+
         }
     }
 
