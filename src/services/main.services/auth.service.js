@@ -13,7 +13,14 @@ export const authService={
         }
         return response
     },
-    refresh:(refresh)=>axiosService.post(urls.auth.refresh,{refresh}),
+    refresh: async function  (refresh){
+        const response = await axiosService.post(urls.auth.refresh,{refresh})
+        if (response.status === 200) {
+            this.setTokens(response.data)
+        }
+
+        return response
+    },
     me:()=>axiosService.get(urls.auth.me),
 
 
