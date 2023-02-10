@@ -39,3 +39,7 @@ axiosService.interceptors.response.use((configs)=>{
         return Promise.reject(error)
     }
     )
+
+export {
+    history
+}

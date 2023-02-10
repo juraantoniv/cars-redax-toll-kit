@@ -7,6 +7,8 @@ import {carService} from "../../services";
 
 let initialState={
     cars:[],
+    prev:null,
+    next:null,
     carForUpdate:null,
     errors:null,
     loading:null
@@ -88,7 +90,10 @@ const carsSlice = createSlice({
     extraReducers: builder =>
         builder
             .addCase(getAllAsync.fulfilled, (state, action) => {
-                state.cars = action.payload
+                const {prev,next,items}=action.payload
+                state.cars = items
+                state.prev = prev
+                state.next = next
                 state.loading = false
             })
 })
