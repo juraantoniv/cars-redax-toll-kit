@@ -53,8 +53,8 @@ const create = createAsyncThunk(
     'carSlice/create',
     async ({car}, thunkAPI) => {
         try {
-            await carService.create(car);
-            thunkAPI.dispatch(getAllAsync())
+            await carService.createCar(car);
+            thunkAPI.dispatch(getAllAsync({page: '1'}))
         } catch (e) {
             return thunkAPI.rejectWithValue(e.response.data)
         }
