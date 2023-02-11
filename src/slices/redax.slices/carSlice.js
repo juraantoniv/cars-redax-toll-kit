@@ -16,10 +16,10 @@ let initialState={
 
 const getAllAsync = createAsyncThunk(
     'carSlice/getAll',
-    async (_,{rejectWithValue})=>{
+    async ({page},{rejectWithValue})=>{
 
         try {
-            const {data} = await carService.getAll()
+            const {data} = await carService.getAll(page)
             return data
         }
         catch (e){
