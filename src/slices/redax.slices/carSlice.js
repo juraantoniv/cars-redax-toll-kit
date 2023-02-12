@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {carService} from "../../services";
+import {authService, carService} from "../../services";
 
 
 
@@ -7,6 +7,7 @@ import {carService} from "../../services";
 
 let initialState={
     cars:[],
+    me:null,
     prev:null,
     next:null,
     carForUpdate:null,
@@ -77,6 +78,24 @@ const updateById = createAsyncThunk(
 )
 
 
+const meId = createAsyncThunk(
+    'carSlice/getName',
+    async (_,{rejectWithValue})=>{
+
+        try {
+            const {data} = await authService.me()
+            return data
+            console.log(data);
+        }
+        catch (e){
+            return rejectWithValue(e.response.data)
+
+        }
+
+    }
+)
+
+
 
 
 const carsSlice = createSlice({
@@ -96,6 +115,9 @@ const carsSlice = createSlice({
                 state.next = next
                 state.loading = false
             })
+            .addCase(meId.fulfilled, (state, action) => {
+                state.me = action.payload
+            })
 })
 
 
@@ -106,7 +128,8 @@ const carsActions ={
     create,
     deleteById,
     carForUpdate,
-    updateById
+    updateById,
+    meId
 }
 
 export {

@@ -6,7 +6,7 @@ import {carsActions} from "../../slices/redax.slices/carSlice";
 import {carValidator} from "../../validators/car.validator";
 
 const Form = () => {
-    const {carForUpdate}=useSelector(state => state.carReducer)
+    const {carForUpdate,me}=useSelector(state => state.carReducer)
     const { register, handleSubmit,reset, formState: { errors,isValid },setValue } = useForm({mode:"all",resolver:joiResolver(carValidator)});
     const dispatch = useDispatch()
 
@@ -23,13 +23,13 @@ const Form = () => {
     }
 
     useEffect(()=>{
+          dispatch(carsActions.meId())
+    },[])
 
-        if (carForUpdate){
-            setValue('brand',carForUpdate.brand,{shouldValidate:true})
-            setValue('price',carForUpdate.price,{shouldValidate:true})
-            setValue('year',carForUpdate.year,{shouldValidate:true})
 
-        }
+    useEffect(()=>{
+
+        dispatch()
 
     },[carForUpdate])
 
@@ -41,6 +41,7 @@ const Form = () => {
                 <input type="text" placeholder={'year'} {...register('year', {valueAsNumber: true})}/>
                <button disabled={!isValid}>{carForUpdate? 'update':'create'}</button>
             </form>
+            {me && JSON.stringify(me)}
         </div>
     );
 };
