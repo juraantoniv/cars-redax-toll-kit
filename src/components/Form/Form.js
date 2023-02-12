@@ -27,12 +27,6 @@ const Form = () => {
     },[])
 
 
-    useEffect(()=>{
-
-        dispatch()
-
-    },[carForUpdate])
-
     return (
         <div>
             <form onSubmit={handleSubmit(carForUpdate? update:create)}>
@@ -41,7 +35,9 @@ const Form = () => {
                 <input type="text" placeholder={'year'} {...register('year', {valueAsNumber: true})}/>
                <button disabled={!isValid}>{carForUpdate? 'update':'create'}</button>
             </form>
-            {me && JSON.stringify(me)}
+           <div>
+               {me && JSON.stringify(me)}
+           </div>
         </div>
     );
 };
