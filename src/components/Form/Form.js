@@ -15,6 +15,16 @@ const Form = () => {
         reset()
     }
 
+    useEffect(() => {
+        if (carForUpdate) {
+            setValue('brand', carForUpdate.brand, {shouldValidate: true})
+            setValue('price', carForUpdate.price, {shouldValidate: true})
+            setValue('year', carForUpdate.year, {shouldValidate: true})
+        }
+    }, [carForUpdate])
+
+
+
     const  update = async (cargo)=> {
         await dispatch(carsActions.updateById({id: carForUpdate.id,car:cargo}))
         console.log(carForUpdate.id);
