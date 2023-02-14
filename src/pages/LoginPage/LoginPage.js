@@ -11,6 +11,7 @@ const LoginPage = () => {
     const login = async (userCredential)=> {
 
         try {
+
             await authService.login(userCredential)
             navigate('/cars')
 

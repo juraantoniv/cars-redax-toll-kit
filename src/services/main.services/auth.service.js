@@ -9,7 +9,9 @@ export const authService={
     login:async function (user){
 
         const response = await axiosService.post(urls.auth.login,user)
+
         if (response.status===200){
+
             this.setTokens(response.data)
 
         }
@@ -17,8 +19,11 @@ export const authService={
     },
 
     refresh: async function  (refresh){
+
         const response = await axiosService.post(urls.auth.refresh,{refresh})
+
         if (response.status === 200) {
+
             this.setTokens(response.data)
         }
 
@@ -28,6 +33,7 @@ export const authService={
 
 
      setTokens:({access,refresh})=>{
+
         localStorage.setItem(accessTokenKey,access)
         localStorage.setItem(refreshTokenKey,refresh)
      },
