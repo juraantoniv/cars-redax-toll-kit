@@ -31,8 +31,6 @@ const Form = () => {
     const  update = async (cargo)=> {
 
         await dispatch(carsActions.updateById({id: carForUpdate.id,car:cargo}))
-        console.log(carForUpdate.id);
-        console.log(cargo);
         reset()
 
     }

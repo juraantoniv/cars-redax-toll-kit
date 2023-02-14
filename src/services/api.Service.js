@@ -23,17 +23,24 @@ axiosService.interceptors.response.use((configs)=>{
         return configs
 },
     async (error)=>{
+
         const refresh =  authService.getRefreshTokenKey()
+
             if(error.response?.status===401 && refresh && !isRefreshing){
+
                     isRefreshing=true
+
                     try {
+
                         await authService.refresh(refresh)
+
                     }catch (e){
 
                         authService.deleteTokens()
                         history.replace('/login?expSession=true')
                     }
                 isRefreshing = false;
+
                 return  axiosService(error.config)
             }
         return Promise.reject(error)
