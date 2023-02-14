@@ -7,7 +7,7 @@ const Car = ({car}) => {
 
     const {id,brand,year,price}=car
     const dispatch = useDispatch()
-    const {carForUpdate}=useSelector(state => state.carReducer)
+
 
 
 
