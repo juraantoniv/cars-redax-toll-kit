@@ -10,7 +10,7 @@ const RegisterPage = () => {
     const [error, setError] = useState(null);
 
     const registerUser = async (user) => {
-        console.log(user);
+
         try {
             await carService.create(user)
             navigate('/login')
